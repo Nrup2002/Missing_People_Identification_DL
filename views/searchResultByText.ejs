@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result - Details match</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="container p-5 pl-5 overflow-hidden" style="margin: 0 auto auto auto;">
+        <button onclick="window.history.back()" type="button"
+            class="pl-4 pr-4 text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+            <h1 class="text-lg text-neutral-900 mt-4 font-bold">Search Result:- </h1>
+        <div class="flex justify-center flex-wrap mt-10 mb-4 p-4">
+            <% matchingPeople.map((person)=>{ %>
+            <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 pt-4 m-2">
+                <div class="flex flex-col items-center pb-10 pl-6 pr-6">
+                    <img class="mb-3  shadow-lg" src="/uploads/<%= person.image %>"
+                        alt="<%= person.name %>" height="150px" width="200px" style="border-radius: 8px;" />
+                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><%= person.name %></h5>
+                    <div class="flex mt-4 space-x-3 md:mt-6">
+                        <a href="/person/<%= person.image %>"
+                            class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-bgreen-800">See Details</a>
+                    </div>
+                </div>
+            </div>
+            <%})%>
+
+        </div>
+    </div>
+
+    
+    <!-- footer -->
+    <%- include('./footer'); %>
+</body>
+<script src="https://kit.fontawesome.com/6c7c0a9da6.js" crossorigin="anonymous"></script>
+
+</html>

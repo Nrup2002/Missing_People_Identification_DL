@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verify Yourself</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/6c7c0a9da6.js" crossorigin="anonymous"></script>
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.status{
+    text-align: center;
+    align-content: center;
+    font-size: larger;
+    margin: 10px auto 10px auto;
+}
+.status h2{
+    margin: 1px auto;
+    font-size: 30px;
+    font-weight: 500;
+    color: #3d3d3d;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 5px;
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+#submit-btn{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+body {
+  background: #ffffff; /* fallback for old browsers */
+  background: rgb(255, 255, 255);
+  /* background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%); */
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+    </style>
+</head>
+<body>
+    <div>
+        <button id="back-button" onclick="window.history.back()" type="button" class="pl-4 pr-4 text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+    </div>
+    <div class="status">
+        <h2><%=status%></h2>
+    </div>
+    <div class="container">
+        <div>
+            <form action="/sendOtp" class="form" method="post" id="info-form">
+                <input type="hidden" name="missingId" id="" value="<%= missingId %>">
+                <input type="text" name="name" id="name" placeholder="Name" required>
+                <input type="number" name="phone" id="phone" placeholder="Phone" required>
+                <button type="submit" id="send-otp">Get OTP</button>
+            </form>
+        </div>
+        <div>
+            <form action="/verifyOtp" method="post" class="form">
+                <input type="hidden" name="missingId" id="" value="<%= missingId %>">
+                <input type="hidden" name="name" id="name2">
+                <input type="hidden" name="phone" id="phone2">
+                <input type="hidden" name="latitude" id="latitude">
+                <input type="hidden" name="longitude" id="longitude">
+                <input type="hidden" name="otp" id="otp-input" placeholder="Enter OTP">
+                <input type="hidden" name="submit" value="submit" id="submit-btn">
+            </form>
+        </div>
+    </div>
+    <%- include("footer") %>
+
+
+    
+</body>
+<script>
+    const form = document.getElementById("info-form");
+    const backButton = document.getElementById("back-button");
+
+    backButton.addEventListener("click",async (e)=>{
+        try{
+            const response = await fetch("/clearOtpMap");
+        }catch(err){
+            console.log("error clearing otpMap",err);
+        }
+    });
+
+    window.addEventListener("beforeunload",async (e)=>{
+        try{
+            const response = await fetch("/clearOtpMap");
+        }catch(err){
+            console.log("error clearing otpMap",err);
+        }
+    })
+
+    window.onload = function() {
+            getLocation();
+    };
+
+    function getLocation() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                document.getElementById("latitude").value = latitude;
+                document.getElementById("longitude").value = longitude;
+                document.getElementById("locationDisplay").textContent = "Latitude: " + latitude + ", Longitude: " + longitude;
+                
+                // Automatically submit the form when the location is obtained
+                document.getElementById("locationForm").submit();
+            });
+        } else {
+            alert("Geolocation is not available in your browser");
+        }
+    }
+
+    form.addEventListener("submit", (e)=>{
+        document.getElementById("otp-input").type = "number";
+        document.getElementById("submit-btn").type = "submit";
+        document.getElementById("phone2").value = document.getElementById("phone").value;
+        document.getElementById("name2").value = document.getElementById("name").value;
+    });
+</script>
+</html>

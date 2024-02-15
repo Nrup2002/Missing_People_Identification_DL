@@ -1,0 +1,64 @@
+
+
+<div class="hidden md:flex md:flex-shrink-0">
+    <div class="flex flex-col w-64">
+
+        <div class="flex flex-col flex-grow pt-5 overflow-y-auto bg-white border-r border-gray-50">
+            <div class="flex flex-col items-center flex-shrink-0 px-4">
+                <a class="px-4 text-left focus:outline-none inline-flex items-center" href="/">
+                    <div class="misspersonlogo">
+                        <i class="fa-solid fa-person-circle-question text-4xl"> </i>
+                    </div>
+                    <h2
+                        class="block p-2 text-xl font-medium tracking-tighter text-gray-900 transition duration-500 ease-in-out transform cursor-pointer hover:text-gray-900">
+                        Find Missing People</h2>
+                </a>
+            </div>
+            <div class="flex flex-col flex-grow px-4 mt-5">
+                <nav class="flex-1 space-y-1 bg-white">
+                    <ul>
+                        <li>
+                            <a <% if (page_name==='home' ) { %>
+                                class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition
+                                duration-500 ease-in-out transform rounded-lg bg-gray-50 focus:shadow-outline"
+                                <%} else { %>
+                                    class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900
+                                    transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline"
+                                    <% } %> href="/">
+                                        <i class="fa-solid fa-earth-americas"></i>
+                                        <span class="ml-4"> Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a <% if (page_name==='search' ) { %>
+                                class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition
+                                duration-500 ease-in-out transform rounded-lg bg-gray-50 focus:shadow-outline"
+                                <%} else { %>
+                                    class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900
+                                    transition duration-500 ease-in-out transform rounded-lg focus:shadow-outline"
+                                    <% } %>
+                                        href="/search">
+                                        <i class="fa-brands fa-searchengin"></i>
+                                        <span class="ml-4">Search</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a <% if (page_name==='upload' ) { %>
+                                class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900 transition
+                                duration-500 ease-in-out transform rounded-lg bg-gray-50 focus:shadow-outline"
+                                <%} else { %>
+                                    class="inline-flex items-center w-full px-4 py-2 mt-1 text-base text-gray-900
+                                    transition
+                                    duration-500 ease-in-out transform rounded-lg focus:shadow-outline"
+                                    <% } %> href="/upload">
+                                        <i class="fa-regular fa-address-card"></i>
+                                        <span class="ml-4">Register</span>
+                            </a>
+                        </li>
+                    </ul>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

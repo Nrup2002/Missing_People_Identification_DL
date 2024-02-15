@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Details - Missing Person</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media (max-width: 576px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+            }
+            .fields{
+                display: flex;
+                flex-direction: column;
+                width: 80%;
+                justify-content: space-between;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 10px;
+            }
+            .field-1{
+                margin-top: 20px;
+                display: flex;
+                justify-content: space-between;
+                
+            }
+            .field-1 input{
+                width: 70%;
+            }
+            footer {
+                margin-top: 0;
+            }
+            #back-btn-1{
+                display: inline-flex;
+            }
+
+        }
+    </style>
+</head>
+
+<body> 
+    <button onclick="window.history.back()" type="button"
+        class="mt-6 ml-5 hidden pl-4 pr-4 text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800" id="back-btn-1">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <div class="flex overflow-hidden bg-white rounded-lg">
+       
+        <!-- header -->
+        <%- include('./header'); %>
+
+            <div class="flex flex-col flex-1 w-0 overflow-hidden">
+                <main class="relative flex-1 overflow-y-auto focus:outline-none">
+                    <div class="py-6">
+                        <div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
+                            <h1 class="text-lg text-neutral-600 mb-5">Enter full name or area or age & see the result</h1>
+                        </div>
+                        <div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
+                            <form id="filter-form" action="/searchByText" method="post"
+                                style="display: flex; flex-direction: column; justify-content: center;">
+                                <p class="fields field-0" style="display: flex; justify-content: space-evenly;">
+                                    <span class="field-1 field-0"> Name:
+                                        <input type="text" name="name" id=""
+                                            style="border: 1px solid gray; border-radius: 5px;">
+                                    </span> 
+                                    <span class="field-1 field-0"> Age:
+                                        <input type="number" name="age" id=""
+                                            style="border: 1px solid gray; border-radius: 5px;">
+                                    </span>
+                                    <span class="field-1 field-0"> Area:
+                                        <input type="text" name="area" id=""
+                                            style="border: 1px solid gray; border-radius: 5px;">
+                                    </span>
+                                </p>
+                                <button
+                                    class="select-none mt-5 mr-auto ml-auto rounded-lg bg-green-500 py-3 px-3 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-40"
+                                    type="submit">Search</button>
+                            </form>
+                            <div class="py-4">
+                                <div class="rounded-lg bg-gray-50 h-96">
+                                    <div id="result">
+                                        <!-- Result is showing here  -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+    </div>
+    <!-- footer -->
+    <%- include('./footer'); %>
+
+</body>
+<script src="https://kit.fontawesome.com/6c7c0a9da6.js" crossorigin="anonymous"></script>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=person.name%>
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <style>
+        .person-details{
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (max-width: 968px) {
+            .person-details {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .card-person-detail {
+                margin: 10px auto;
+            }
+
+            .card-person-detail img {
+                width: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container p-5 pl-5 overflow-hidden" style="margin: 0 auto auto auto;">
+    <button onclick="window.history.back()" type="button" class="pl-4 pr-4 text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="mt-4 mb-4 flex overflow-hidden bg-white rounded-lg person-details">
+        <h5
+            class=" text-4xl mb-2 m-10 block font-sans font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+            Person Details:-
+        </h5>
+
+        <div
+            class="mt-10 ml-5 relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md card-person-detail">
+            <div class="relative mx-4 -mt-6  overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/50"
+                style="display: flex; justify-content: center;">
+                <img src="/uploads/<%= person.image %>" alt="Person Image" layout="fill" class="person_image"
+                    width="250" />
+            </div>
+            <div class="p-6">
+                <h5
+                    class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                    <%= person.name.toUpperCase() %>
+                </h5>
+                <p class="text-body-color mb-7 text-base leading-relaxed">AGE: <%= person.age %>
+                        <br> Reg.Date: <%= person.registrationDate %>
+                            <br>PLACE OF INCIDENCE: <%= person.incidentPlace.toUpperCase() %>
+                                <br>POLICE STATION: <%= person.policeStation.toUpperCase() %>
+                                    <br>DISTRICT: <%= person.district.toUpperCase() %>
+                </p>
+            </div>
+            <div class="p-6 pt-0">
+                <a href="/inform/<%= person._id %>"
+                    class="select-none rounded-lg bg-green-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    type="button" data-ripple-light="true">
+                    INFORM TO POLICE
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- footer -->
+    <%- include('./footer'); %>
+</body>
+<script src="https://kit.fontawesome.com/6c7c0a9da6.js" crossorigin="anonymous"></script>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload data - Missing person</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media (max-width: 576px) {
+            footer {
+                margin-top: 0;
+            }
+            #back-btn-1{
+                display: inline-flex;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="window.history.back()" type="button"
+        class="mt-6 ml-5 hidden pl-4 pr-4 text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        id="back-btn-1">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <div class="flex overflow-hidden bg-white rounded-lg mb-10">
+
+        <!-- header -->
+        <%- include('./header'); %>
+
+
+            <div class="flex flex-col flex-1 w-0 overflow-hidden mb-5" style="margin: 0 auto auto auto;">
+                <main class="relative flex-1 overflow-y-auto focus:outline-none">
+                    <div class="py-6 flex flex-col items-center justify-center ">
+                        <div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
+                            <div
+                                class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                    <h1
+                                        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                                        <%= message %>
+                                    </h1>
+                                    <form class="m-2 flex flex-wrap flex-direction-row :space-y-6" action="/upload"
+                                        method="post" enctype="multipart/form-data"
+                                        style="justify-content: space-between; ">
+                                        <!-- fields -->
+                                        <div class="pb-4">
+                                            <label for="name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                            <input type="name" name="name" id="name"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Name here" required="">
+                                        </div>
+                                        <div class="pb-4">
+                                            <label for="age"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
+                                            <input type="number" name="age" id="age"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="Enter age" required="">
+                                        </div>
+                                        <div class="pb-4">
+                                            <label for="gender"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                                            <select name="gender" id=""
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required="">
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="pb-4">
+                                            <label for="area-of-incident"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Area
+                                                of Incident</label>
+                                            <input type="text" name="incidentPlace" id="area-of-incident"
+                                                placeholder="Incident Place"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required="">
+                                        </div>
+                                        <div class="pb-4">
+                                            <label for="Registration-date"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Registration
+                                                date</label>
+                                            <input type="date" name="registrationDate" id="Registration-date"
+                                                placeholder="Enter Registration date"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required="">
+                                        </div>
+                                        <div class="pb-4">
+                                            <label for="policeStation"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Police
+                                                Station</label>
+                                            <input type="text" name="policeStation" id="policeStation"
+                                                placeholder="Police Station"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required="">
+                                        </div>
+                                        <div class="pb-4">
+                                            <label for="District"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">District</label>
+                                            <input type="text" name="district" id="district" placeholder="District"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required="">
+                                        </div>
+                                        <div class="pb-4">
+                                            <label for="uploadPhoto"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload
+                                                Photo</label>
+                                            <input type="file" name="image" id="image"
+                                                accept="image/png, image/gif, image/jpeg"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                required="">
+                                        </div>
+                                        <!-- check box -->
+                                        <div class="flex items-start">
+                                            <div class="flex items-center h-5">
+                                                <input id="terms" aria-describedby="terms" type="checkbox"
+                                                    class="w-4 h-4 border border-gray-300 rounded bg-green-500 focus:ring-3 focus:ring-green-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-green-600 dark:ring-offset-gray-800"
+                                                    required="">
+                                            </div>
+                                            <div class="ml-3 text-sm">
+                                                <label for="terms" class="font-light text-gray-500 dark:text-gray-300">I
+                                                    accept the <a
+                                                        class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                                                        href="#">Terms and Conditions</a></label>
+                                            </div>
+                                        </div>
+                                        <button type="submit"
+                                            class="btn select-none mt-15 mr-auto ml-auto rounded-lg bg-green-500 py-3 px-3 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-24 h-9">Create</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+    </div>
+    <!-- footer -->
+    <%- include('./footer'); %>
+</body>
+<script src="https://kit.fontawesome.com/6c7c0a9da6.js" crossorigin="anonymous"></script>
+
+</html>

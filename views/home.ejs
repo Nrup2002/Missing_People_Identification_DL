@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Missing person</title>
+
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #font-main {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+
+        @media (max-width: 576px) {
+            nav {
+                display: flex;
+                flex-direction: column;
+            }
+
+            body {
+                font-size: 22px;
+            }
+
+            footer {
+                margin-top: 0;
+            }
+
+            #image-search {
+                margin-top: 30px;
+                margin-left: auto;
+                margin-right: auto;
+                justify-content: center;
+                width: 90%;
+                overflow: hidden;
+            }
+
+            #logo-mobile {
+                display: flex;
+            }
+
+            #home-btn {
+                margin-top: 30px;
+                font-size: 18px;
+                padding: 5px 10px;
+                width: 120px;
+                margin-bottom: 10px;
+            }
+
+            #form-main {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 95%;
+            }
+
+            #font-main {
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            .text-main {
+                font-size: 16px;
+                font-weight: 200;
+            }
+
+            #desc-main {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            #dash-container {
+                width: 80%;
+                display: flex;
+                justify-content: center;
+            }
+            #image-status{
+                font-size: 10px;
+            }
+            .drop-text{
+                font-size: 11px;
+            }
+        }
+
+        #main-dec #dash-container {
+            height: min-content;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .mobile-menu {
+            position: absolute;
+            left: 20px;
+            z-index: 88;
+            background-color: rgb(255, 255, 255);
+            width: 120px;
+            margin-top: 90px;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+            border: 1px solid grey;
+            border-radius: 3px;
+        }
+
+        .mobile-menu-button i {
+            z-index: 89;
+            font-size: 22px;
+            margin-top: 10px;
+            position: absolute;
+            left: 25px;
+
+        }
+
+        .upload-form {
+            width: 60%;
+            height: auto;
+            margin: 20px auto;
+            padding: 10px auto;
+        }
+
+    </style>
+    <script src="https://kit.fontawesome.com/6c7c0a9da6.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+    <nav class="content">
+        <div id="logo-mobile" class="hidden mt-10 flex flex-col items-center flex-shrink-0 px-4"
+            style="flex-direction: column;">
+            <a class="px-4 text-left focus:outline-none inline-flex items-center" href="/">
+                <div class="misspersonlogo">
+                    <i class="fa-solid fa-person-circle-question text-4xl"> </i>
+                </div>
+                <h2
+                    class="block p-2 text-xl font-medium tracking-tighter text-gray-900 transition duration-500 ease-in-out transform cursor-pointer hover:text-gray-900">
+                    Find Missing People</h2>
+            </a>
+        </div>
+        <div class=" mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button" id="mobile-btn">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- mobile menu -->
+        <div class="hidden mobile-menu " id="burgur-menu">
+            <ul class="burgur-menu-main">
+                <li>
+                    <a class="bg-green-500 block text-sm px-2 py-4 hover:bg-green-500 transition duration-300"
+                        style="font-size: 20px;" href="/">
+                        <span class="ml-4"> Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a <% if (page_name==='search' ) { %>
+                        class="active block text-sm px-2 py-4 hover:bg-green-500 transition duration-300"
+                        style="font-size: 20px;"
+                        <%} else { %>
+                            class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300" style="font-size:
+                            20px;"
+                            <% } %> href="/search">
+                                <span class="ml-4"> Search</span>
+                    </a>
+                </li>
+                <li>
+                    <a <% if (page_name==='upload' ) { %>
+                        class="active block text-sm px-2 py-4 hover:bg-green-500 transition duration-300"
+                        style="font-size: 20px;"
+                        <%} else { %>
+                            class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300" style="font-size:
+                            20px;"
+                            <% } %> href="/upload">
+                                <span class="ml-4"> Register</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex overflow-hidden bg-white rounded-lg">
+
+            <!-- header -->
+            <%- include('./header'); %>
+
+
+
+
+                <div class="flex flex-col flex-1 w-0 overflow-hidden " id="image-search">
+                    <main class="relative flex-1 overflow-y-auto focus:outline-none">
+                        <div class=" mb-6 py-6  bg-gray-100 " id="desc-main">
+                            <div class="p-4 upload-form bg-white rounded-lg">
+                                <div class="my-2 p-2 mx-auto max-w-7xl sm:px-6 md:px-8 flex justify-center">
+                                    <h1 class="text-lg text-neutral-600" id="font-main">Click the pic and see the result
+                                    </h1>
+                                </div>
+                                <hr>
+                                <!-- form  -->
+                                <form class="my-4 px-auto flex justify-center" action="/searchFace" method="post"
+                                    enctype="multipart/form-data" id="form-main">
+                                    <div class="max-w-xl px-auto w-full">
+                                        <span class="mx-4 text-main">Upload Image here</span>
+                                        <label
+                                            class="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+                                            <span class="flex items-center space-x-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                    stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                </svg>
+                                                <span class="font-medium text-gray-600 drop-text">
+                                                    Drop files to Attach, or
+                                                    <span class="text-blue-600 underline">browse</span>
+                                                    <h3 id="image-status"></h3>
+                                                </span>
+                                            </span>
+                                            <input type="file" name="image" class="hidden"
+                                                accept="image/png, image/gif, image/jpeg" id="image-field" required>
+                                        </label>
+                                        <button type="submit" id="home-btn"
+                                            class="my-4 w-full btn select-none mr-auto ml-auto rounded-lg bg-green-500 py-3 px-3 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none w-50 h-9">Check</button>
+                                    </div>
+
+                                </form>
+                            </div>
+
+
+                            <div class="py-4 bg-gray-100" id="dash-container">
+                                <div>
+                                    <%- include('./dashboard'); %>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+        </div>
+    </nav>
+
+    <!-- footer -->
+    <%- include('./footer'); %>
+</body>
+<script>
+    const btn = document.getElementById("mobile-btn");
+    const menu = document.getElementById("burgur-menu");
+    const image = document.getElementById("image-field");
+    const imageStatus = document.getElementById("image-status");
+
+    image.addEventListener("change",(e)=>{
+        if(image.files){
+            imageStatus.textContent = `Loaded: ${image.files[0].name}`;
+        }else{
+            imageStatus.textContent = "";
+        }
+    })
+
+    btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+    });
+
+
+</script>
+
+</html>
