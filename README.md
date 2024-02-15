@@ -1,7 +1,7 @@
 # Missing_People_Identification_DL
 [Visit Now](https://missing-people-identification.onrender.com)
 
-# Proposed System
+#
 
 ## System Architecture
 
